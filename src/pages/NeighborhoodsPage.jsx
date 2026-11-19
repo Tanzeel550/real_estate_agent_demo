@@ -107,7 +107,7 @@ Suits:
           <p className="lead">
 Also covering Long Island City, Williamsburg, Park Slope, Upper East Side, Upper West Side, Chelsea and the Financial District. Ask me about any area.
           </p>
-          <Link className="btn" style={{ marginTop: "20px" }} to="/neighborhood-guide">Explore all 12 neighborhood guides</Link>
+          <Link className="text-link" style={{ display: "inline-flex", marginTop: "14px" }} to="/neighborhood-guide">Explore all 12 neighborhood guides →</Link>
         </div>
       </section>
       <section className="alt"><div className="wrap"><div className="head"><span className="eyebrow">A map of the places we know</span><h2>Get to know New York by neighborhood</h2><p className="lead">Open a marker to see an area name, then explore the local guide for the streets, parks and everyday rhythm that make it feel like home.</p></div><div id="neighborhood-map" className="map" role="region" aria-label="Map of NYC neighborhoods" /><p className="map-caption">Neighborhood markers are approximate. Transit, commute and local details can vary by block.</p></div></section>

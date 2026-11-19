@@ -48,10 +48,25 @@ export function Header() {
 }
 
 export function Footer() {
+  const [checklistSent, setChecklistSent] = useState(false);
+  const submitChecklist = (event) => {
+    event.preventDefault();
+    const email = event.currentTarget.elements.checklistEmail.value;
+    const leads = JSON.parse(localStorage.getItem('daniel-leads') || '[]');
+    localStorage.setItem('daniel-leads', JSON.stringify([...leads, { email, context: 'Buyer checklist', createdAt: new Date().toISOString() }]));
+    setChecklistSent(true);
+  };
   return (
       <footer>
         <div className="wrap">
           <div className="g5 footer-columns">
+            {/* Kept for future use:
+            <div className="footer-checklist">
+              <h3>Free home buyer checklist</h3>
+              <p>Get twelve pages of practical advice, from pre-approval to closing day.</p>
+              {checklistSent ? <p role="status">You’re on the list. Daniel will follow up by email.</p> : <form onSubmit={submitChecklist}><label htmlFor="footer-checklist-email">Email address</label><input id="footer-checklist-email" name="checklistEmail" type="email" placeholder="you@example.com" required /><button className="btn" type="submit">Download checklist</button></form>}
+            </div>
+            */}
             <div>
               <h3>
 Daniel Carter
@@ -102,7 +117,7 @@ Contact
               <h3>Explore</h3>
               <Link to="/buyers-guide">Buyer’s guide</Link>
               <Link to="/sellers-guide">Seller’s guide</Link>
-              <Link to="/valuation">Free home valuation</Link>
+              <Link to="/services#sell">Selling your home</Link>
               <Link to="/calculators">Home calculators</Link>
               <Link to="/market-insights">Market insights</Link>
               <Link to="/investors">Investors</Link>

@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import MortgageCalculator from '../components/MortgageCalculator.jsx';
 
 export default function HomePage() {
-  const [newsletterSent, setNewsletterSent] = useState(false);
   return (
     <main>
       <section className="hero2">
@@ -33,9 +31,8 @@ Meet Daniel
       <section>
         <div className="wrap split rev">
           <div className="prose">
-            <h2>
-Hi, I'm Daniel. I'm the one who picks up when you call.
-            </h2>
+            <Link className="text-link" to="/about">Read my full story →</Link>
+            <h2>Hi, I'm Daniel. I'm the one who picks up when you call.</h2>
             <p className="sub">
 Twelve years in New York real estate, and I still treat every client like my only one.
             </p>
@@ -48,11 +45,6 @@ I became an agent because I watched too many friends get pushed around during th
             <p>
 When you work with me, you will never wonder where your agent is or what happens next. You will always know, and you will always be able to ask.
             </p>
-            <div className="row">
-              <Link className="btn" to="/about">
-Read my full story
-              </Link>
-            </div>
           </div>
           <div className="im ph t1">
             <img className="agent-portrait" alt="Portrait of a New York real estate agent" loading="lazy" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=90" />
@@ -62,16 +54,18 @@ Local experience. One phone that gets answered.
           </div>
         </div>
       </section>
-      <section className="alt"><div className="wrap"><div className="head"><span className="eyebrow">Start where you are</span><h2>What brings you here today?</h2><p className="lead">Choose a path and get practical guidance for your next move.</p></div><div className="g4"><Link className="path-card" to="/buyers-guide"><span>01</span><h3>I’m buying</h3><p>Build a smart search and understand the NYC process.</p></Link><Link className="path-card" to="/valuation"><span>02</span><h3>I’m selling</h3><p>Get a grounded pricing review and launch plan.</p></Link><Link className="path-card" to="/services"><span>03</span><h3>I’m renting</h3><p>Get help with a rental search, application or lease.</p></Link><Link className="path-card" to="/investors"><span>04</span><h3>I’m investing</h3><p>Pressure-test the numbers and building details.</p></Link></div></div></section>
+      <section className="alt"><div className="wrap"><div className="head"><span className="eyebrow">Start where you are</span><h2>What brings you here today?</h2><p className="lead">Choose a path and get practical guidance for your next move.</p><Link className="text-link" to="/contact">Talk with Daniel →</Link></div><div className="g4"><Link className="path-card" to="/services#buy"><span>01</span><h3>I’m buying</h3><p>Build a smart search and understand the NYC process.</p></Link><Link className="path-card" to="/services#sell"><span>02</span><h3>I’m selling</h3><p>Get a grounded pricing review and launch plan.</p></Link><Link className="path-card" to="/services#rent"><span>03</span><h3>I’m renting</h3><p>Get help with a rental search, application or lease.</p></Link><Link className="path-card" to="/services#invest"><span>04</span><h3>I’m investing</h3><p>Pressure-test the numbers and building details.</p></Link></div></div></section>
       <section className="alt">
         <div className="wrap">
           <div className="head">
+            <span className="eyebrow">A considered shortlist</span>
             <h2>
 Featured listings
             </h2>
             <p className="lead">
 Hand-picked homes that represent the best of what's available right now.
             </p>
+            <Link className="text-link" to="/listings">Browse all listings →</Link>
           </div>
           <div className="g3">
             <article className="card">
@@ -206,152 +200,21 @@ Schedule a showing
                 </div>
               </div>
             </article>
-            <article className="card">
-              <div className="ph t1">
-                <img alt="Sunlit New York apartment interior" loading="lazy" src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=82" />
-                <span className="badge">
-Just Listed
-                </span>
-              </div>
-              <div className="b">
-                <div className="price">
-$675,000
-                </div>
-                <h3>
-35-12 Astoria Blvd, Unit 5D, Astoria
-                </h3>
-                <div className="meta">
-2 Beds | 1 Bath | 900 sq ft | Co-op
-                </div>
-                <p>
-Bright two-bedroom co-op with updated kitchen and generous closets, close to the N/W and Astoria Park.
-                </p>
-                <div className="tags">
-                  <span>
-Dishwasher
-                  </span>
-                  <span>
-Near subway
-                  </span>
-                  <span>
-Closets
-                  </span>
-                </div>
-                <div className="row">
-                  <Link className="btn" to="/property/astoria-3512">
-View details
-                  </Link>
-                  <Link className="btn o" to="/property/astoria-3512#showing">
-Schedule a showing
-                  </Link>
-                </div>
-              </div>
-            </article>
-            <article className="card">
-              <div className="ph t2">
-                <img alt="Sunlit New York apartment interior" loading="lazy" src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=82" />
-                <span className="badge">
-Virtual Tour
-                </span>
-              </div>
-              <div className="b">
-                <div className="price">
-$1,450,000
-                </div>
-                <h3>
-120 Brooklyn Heights Pl, Unit 3A, Brooklyn Heights
-                </h3>
-                <div className="meta">
-3 Beds | 2 Baths | 1,400 sq ft | Co-op
-                </div>
-                <p>
-Classic pre-war three-bedroom with high ceilings, original moldings and a wood-burning fireplace.
-                </p>
-                <div className="tags">
-                  <span>
-Fireplace
-                  </span>
-                  <span>
-Shared garden
-                  </span>
-                  <span>
-Doorman
-                  </span>
-                  <span>
-Near Promenade
-                  </span>
-                </div>
-                <div className="row">
-                  <Link className="btn" to="/property/brooklyn-120">
-View details
-                  </Link>
-                  <Link className="btn o" to="/property/brooklyn-120#showing">
-Schedule a showing
-                  </Link>
-                </div>
-              </div>
-            </article>
-            <article className="card">
-              <div className="ph t3">
-                <img alt="Sunlit New York apartment interior" loading="lazy" src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=82" />
-                <span className="badge">
-Best Value
-                </span>
-              </div>
-              <div className="b">
-                <div className="price">
-$1,895,000
-                </div>
-                <h3>
-55 E 87th St, Unit 12F, Upper East Side
-                </h3>
-                <div className="meta">
-2 Beds | 2 Baths | 1,200 sq ft | Condo
-                </div>
-                <p>
-Elegant two-bedroom with renovated kitchen, marble baths and a full-service building near Central Park.
-                </p>
-                <div className="tags">
-                  <span>
-Doorman
-                  </span>
-                  <span>
-Gym
-                  </span>
-                  <span>
-Roof deck
-                  </span>
-                  <span>
-Marble baths
-                  </span>
-                </div>
-                <div className="row">
-                  <Link className="btn" to="/property/ues-55">
-View details
-                  </Link>
-                  <Link className="btn o" to="/property/ues-55#showing">
-Schedule a showing
-                  </Link>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div className="row">
-            <Link className="btn o" to="/listings">
-Browse all listings
-            </Link>
           </div>
         </div>
       </section>
       <section>
         <div className="wrap">
           <div className="head">
+            <span className="eyebrow">A steady partner at every step</span>
             <h2>
 Why work with Daniel
             </h2>
             <p className="lead">
 Buying or selling a home is one of the biggest decisions of your life. Here is what you can count on when I'm by your side.
             </p>
+            <Link className="text-link" to="/services">Explore how I can help →</Link>
+            
           </div>
           <div className="g3">
             <div className="pt">
@@ -403,13 +266,12 @@ Your keys are not the end of our relationship. Many of my clients text me months
               </p>
             </div>
           </div>
-          <div className="row">
-            <Link className="btn o light" to="/contact">Contact Daniel</Link>
-          </div>
         </div>
       </section>
       <section className="stats">
-        <div className="wrap g4">
+        <div className="wrap">
+          <div className="head"><span className="eyebrow">Experience, close to home</span><h2>New York knowledge you can use</h2><p className="lead">Local experience and responsive one-to-one guidance at every stage.</p><Link className="text-link" to="/about">Meet Daniel →</Link></div>
+          <div className="g4">
           <div>
             <b>
 NYC
@@ -442,38 +304,19 @@ Clear
 Communication
             </span>
           </div>
+          </div>
         </div>
       </section>
-      <section><div className="wrap"><MortgageCalculator /></div></section>
+      <section className="alt"><div className="wrap"><div className="head"><span className="eyebrow">Plan with confidence</span><h2>Know your monthly numbers</h2><p className="lead">Try a quick estimate to see how price, down payment and building charges affect your budget.</p><Link className="text-link" to="/calculators">See all planning tools →</Link></div><MortgageCalculator /></div></section>
       <section className="alt">
         <div className="wrap">
           <div className="head">
-            <h2>
-Where I've worked
-            </h2>
-            <p className="lead">
-This map shows all of my properties across New York: the current listings and the homes I have already sold. Click any pin for the address and price.
-            </p>
-          </div>
-          <div className="legend">
-            <span>
-              <i style={{ background: "#2457C5" }}></i>
-Current listings
-            </span>
-            <span>
-              <i style={{ background: "#6f9686" }}></i>
-Sold properties
-            </span>
-          </div>
-          <div aria-label="Map of properties" className="map" id="m1" role="region"></div>
-        </div>
-      </section>
-      <section>
-        <div className="wrap">
-          <div className="head">
+            <span className="eyebrow">A little more than a transaction</span>
             <h2>
 What clients say
             </h2>
+            <p className="lead">Hear how clear advice and steady support helped New Yorkers make their next move.</p>
+            <Link className="text-link" to="/testimonials">Read more testimonials →</Link>
           </div>
           <div className="g3">
             <blockquote className="quote">
@@ -501,22 +344,19 @@ Emily &amp; James T., buyers, Upper West Side
               </cite>
             </blockquote>
           </div>
-          <div className="row">
-            <Link className="btn o light" to="/testimonials">
-Read more testimonials
-            </Link>
-          </div>
         </div>
       </section>
       <section className="alt">
         <div className="wrap">
           <div className="head">
+            <span className="eyebrow">Recent client wins</span>
             <h2>
 Recent sales
             </h2>
             <p className="lead">
-A track record you can see.
+A track record you can see, with the strategy behind each result.
             </p>
+            <Link className="text-link" to="/sold">View sold properties →</Link>
           </div>
           <div className="g3">
             <article className="card">
@@ -595,42 +435,17 @@ Marketed on value, subway access and the dining scene. Sold to a couple outbid o
               </div>
             </article>
           </div>
-          <div className="row">
-            <Link className="btn o" to="/sold">
-View all sold properties
-            </Link>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div className="wrap split">
-          <div>
-            <h2>
-Download the free home buyer's checklist
-            </h2>
-            <p className="lead">
-Twelve pages of practical advice, from pre-approval to closing day.
-            </p>
-          </div>
-          {newsletterSent ? <div className="success" role="status"><h3>You’re on the list.</h3><p>Your checklist request is saved in this demo. Daniel will follow up by email.</p></div> : <form onSubmit={(event) => { event.preventDefault(); const leads = JSON.parse(localStorage.getItem('daniel-leads') || '[]'); localStorage.setItem('daniel-leads', JSON.stringify([...leads, { email: event.currentTarget.elements.email.value, context: 'Buyer checklist', createdAt: new Date().toISOString() }])); setNewsletterSent(true); }}>
-            <label htmlFor="e">
-Email address
-            </label>
-            <input id="e" name="email" placeholder="you@example.com" type="email" required />
-            <div className="row" style={{ marginTop: "14px" }}>
-              <button className="btn">
-Download now
-              </button>
-            </div>
-          </form>}
         </div>
       </section>
       <section className="alt">
         <div className="wrap">
           <div className="head">
+            <span className="eyebrow">Good to know</span>
             <h2>
 Common questions
             </h2>
+            <p className="lead">Get quick answers to the details that shape a confident New York move.</p>
+            
           </div>
           <details>
             <summary>
@@ -706,6 +521,18 @@ Typically 2–5% of the purchase price, covering attorney fees, title insurance,
           </details>
         </div>
       </section>
+      <section className="alt">
+        <div className="wrap">
+          <div className="head">
+            <span className="eyebrow">Local context</span>
+            <h2>Where I’ve worked</h2>
+            <p className="lead">See how current listings and recent sales connect to the neighborhoods around them.</p>
+            <Link className="text-link" to="/neighborhoods">Explore NYC neighborhoods →</Link>
+          </div>
+          <div className="legend"><span><i style={{ background: "#2457C5" }}></i>Current listings</span><span><i style={{ background: "#6f9686" }}></i>Sold properties</span></div>
+          <div aria-label="Map of properties" className="map" id="m1" role="region"></div>
+        </div>
+      </section>
       <section className="cta">
         <div className="wrap">
           <h2>
@@ -714,9 +541,7 @@ Ready to buy or sell? Let's talk.
           <p>
 No pressure, no obligation. Just an honest conversation about your goals.
           </p>
-          <Link className="btn" to="/contact">
-Schedule a free consultation
-          </Link>
+          <Link className="btn" to="/contact">Schedule a free consultation</Link>
         </div>
       </section>
     </main>

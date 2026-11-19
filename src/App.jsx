@@ -9,7 +9,7 @@ import ServicesPage from './pages/ServicesPage.jsx';
 import NeighborhoodsPage from './pages/NeighborhoodsPage.jsx';
 import TestimonialsPage from './pages/TestimonialsPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
-import { PropertyPage, ValuationPage, GuidePage, MarketPage, CalculatorPage, LegalPage, ThankYouPage, NotFoundPage, NeighborhoodGuidePage, AwardsPage, CaseStudiesPage } from './pages/LeadPages.jsx';
+import { PropertyPage, GuidePage, MarketPage, CalculatorPage, LegalPage, ThankYouPage, NotFoundPage, NeighborhoodGuidePage, AwardsPage, CaseStudiesPage } from './pages/LeadPages.jsx';
 
 const properties = [
   [40.7395, -74.001, '245 W 14th St, Unit 4B, Chelsea', '$1,250,000', 'l'],
@@ -28,16 +28,20 @@ const properties = [
 ];
 
 function PageEffects() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if (hash) {
+      window.requestAnimationFrame(() => document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView());
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
     const pageTitles = {
       '/': 'Home | Daniel Carter Real Estate', '/about': 'About | Daniel Carter Real Estate',
       '/listings': 'Listings | Daniel Carter Real Estate', '/sold': 'Sold | Daniel Carter Real Estate',
       '/services': 'Services | Daniel Carter Real Estate', '/neighborhoods': 'Neighborhoods | Daniel Carter Real Estate',
       '/testimonials': 'Testimonials | Daniel Carter Real Estate', '/resources': 'Resources | Daniel Carter Real Estate',
       '/contact': 'Contact | Daniel Carter Real Estate',
-      '/valuation': 'Home Valuation | Daniel Carter Real Estate', '/buyers-guide': 'Buyer Guide | Daniel Carter Real Estate',
+      '/buyers-guide': 'Buyer Guide | Daniel Carter Real Estate',
       '/sellers-guide': 'Seller Guide | Daniel Carter Real Estate', '/market-insights': 'NYC Market Insights | Daniel Carter Real Estate',
       '/calculators': 'NYC Home Calculators | Daniel Carter Real Estate', '/rentals': 'NYC Rentals | Daniel Carter Real Estate',
       '/investors': 'NYC Property Investors | Daniel Carter Real Estate', '/relocation': 'NYC Relocation Guide | Daniel Carter Real Estate',
@@ -62,7 +66,7 @@ function PageEffects() {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' }) : null;
+    }, { threshold: 0.04, rootMargin: window.matchMedia('(max-width: 760px)').matches ? '0px 0px 18% 0px' : '0px 0px -5% 0px' }) : null;
     [...new Set([...revealItems, ...directionalItems])].forEach((item) => observer ? observer.observe(item) : item.classList.add('is-visible'));
     const maps = [...document.querySelectorAll('.map')];
     let cancelled = false;
@@ -122,7 +126,7 @@ function PageEffects() {
       document.body.append(script);
     }
     return () => { cancelled = true; observer?.disconnect(); markerObservers.forEach((mapObserver) => mapObserver.disconnect()); markerTimers.forEach(window.clearTimeout); instances.filter(Boolean).forEach((map) => map.remove()); css.remove(); };
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 }
 
@@ -137,7 +141,6 @@ function Site() {
     <Route path="/neighborhoods" element={<NeighborhoodsPage />} />
     <Route path="/testimonials" element={<TestimonialsPage />} />
     <Route path="/contact" element={<ContactPage />} />
-    <Route path="/valuation" element={<ValuationPage />} />
     <Route path="/buyers-guide" element={<GuidePage slug="buyers-guide" />} />
     <Route path="/sellers-guide" element={<GuidePage slug="sellers-guide" />} />
     <Route path="/market-insights" element={<MarketPage />} />
