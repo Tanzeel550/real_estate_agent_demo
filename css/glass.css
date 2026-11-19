@@ -1,0 +1,220 @@
+/* =========================================================
+   GLASS UI LAYER
+   Loaded AFTER style.css (see src/main.jsx). Delete the import
+   of this file to go back to the original flat design.
+   ========================================================= */
+
+:root{
+  --glass-bg:rgba(255,255,255,.52);
+  --glass-bg-strong:rgba(255,255,255,.68);
+  --glass-dark:rgba(20,38,48,.52);
+  --glass-border:rgba(255,255,255,.72);
+  --glass-edge:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(255,255,255,.18);
+  --glass-shadow:0 8px 32px rgba(24,43,58,.12);
+  --glass-shadow-lg:0 18px 50px rgba(24,43,58,.18);
+  --glass-blur:blur(20px) saturate(170%);
+  --line:rgba(255,255,255,.65);
+  --shadow:0 18px 50px rgba(24,43,58,.16);
+}
+
+/* ---------- Backdrop the glass can refract ---------- */
+html{background:#e9efec}
+body{background:transparent;position:relative}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(900px 620px at 8% 4%,rgba(36,91,80,.38),transparent 62%),
+    radial-gradient(800px 600px at 92% 18%,rgba(194,155,97,.42),transparent 62%),
+    radial-gradient(900px 700px at 72% 92%,rgba(86,136,170,.36),transparent 62%),
+    radial-gradient(700px 520px at 4% 82%,rgba(150,190,165,.5),transparent 62%),
+    linear-gradient(160deg,#eef4f1 0%,#e7e4da 100%);
+}
+body::after{
+  content:"";position:fixed;z-index:-1;pointer-events:none;
+  width:46vmax;height:46vmax;right:-14vmax;top:30vh;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.55),rgba(36,91,80,.16) 55%,transparent 70%);
+  filter:blur(30px);animation:glass-drift 26s ease-in-out infinite alternate;
+}
+@keyframes glass-drift{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to{transform:translate3d(-14vmax,-16vh,0) scale(1.15)}
+}
+
+section{background:transparent}
+.alt{background:rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(255,255,255,.35)}
+
+/* ---------- Shared glass surface ---------- */
+.card,.pt,.tc,.testimonial-card,.path-card,.neighborhood-tile,.lead-form,.calculator,
+.calculator-tool,.property-facts article,.case-study,.open-house,.contact-social,
+.timeline article,.search,.floatcard,.saved-count,.cb button,.view-toggle,
+.review-links a,.social-links a,.map,.trust-strip{
+  background:var(--glass-bg);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--glass-edge),var(--glass-shadow);
+}
+.timeline article{border-top:1px solid var(--glass-border);border-bottom:3px solid var(--brass);border-radius:14px}
+.trust-strip{border-radius:999px;padding:16px 28px}
+.card:hover,.path-card:hover{box-shadow:var(--glass-edge),var(--glass-shadow-lg);background:var(--glass-bg-strong)}
+
+/* Tinted / inset panels */
+.listing-tools,.tool-result,.tool-results,.offmarket,.home-calculator,.map-placeholder{
+  background:rgba(255,255,255,.4);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);box-shadow:var(--glass-edge),var(--glass-shadow);
+}
+.home-calculator{background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.28))}
+.map-placeholder{background:linear-gradient(125deg,rgba(255,255,255,.5),rgba(190,215,200,.35))}
+.tags span{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7)}
+.timeline.compact-timeline article{background:var(--glass-bg)}
+.compact-timeline article{background:var(--glass-bg)}
+
+/* Success */
+.success{background:rgba(232,247,238,.6);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);border-color:rgba(160,210,185,.8)}
+
+/* ---------- Header ---------- */
+header{
+  background:rgba(250,251,249,.58);
+  -webkit-backdrop-filter:blur(32px) saturate(180%);backdrop-filter:blur(32px) saturate(180%);
+  border-bottom:1px solid rgba(255,255,255,.7);
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 8px 30px rgba(24,43,58,.08);
+  transition:background .25s ease,box-shadow .25s ease;
+}
+header.top{background:rgba(250,251,249,.46)}
+header:not(.top){background:rgba(250,251,249,.72);box-shadow:0 8px 24px rgba(24,43,58,.1)}
+#site-header nav ul>li:not(:last-child)>a{position:relative;transition:color .2s ease,transform .2s ease}
+#site-header nav ul>li:not(:last-child)>a::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:2px;border-radius:2px;background:var(--blue);transform:scaleX(0);transform-origin:left center;transition:transform .22s ease}
+#site-header nav ul>li:not(:last-child)>a:hover{transform:translateY(-1px)}
+#site-header nav ul>li:not(:last-child)>a:hover::after,#site-header nav ul>li:not(:last-child)>a.on::after{transform:scaleX(1)}
+#site-header .burger{transition:color .2s ease}
+#site-header .burger:hover{color:var(--blue)}
+.nav-backdrop{display:none}
+@media(max-width:1120px){
+  nav ul{
+    background:rgba(250,251,249,.78);
+    -webkit-backdrop-filter:blur(32px) saturate(180%);backdrop-filter:blur(32px) saturate(180%);
+    border-bottom:1px solid rgba(255,255,255,.8);
+  }
+  #site-header nav ul.menu-open{transform-origin:top center;animation:menu-open .38s cubic-bezier(.16,1,.3,1) both;will-change:transform,opacity,filter}
+  #site-header nav ul.menu-closing{display:flex;transform-origin:top center;animation:menu-close .24s cubic-bezier(.4,0,.8,.3) both;pointer-events:none}
+  #site-header nav ul.menu-open li{animation:menu-link-arrive .38s cubic-bezier(.16,1,.3,1) both}
+  #site-header nav ul.menu-open li:nth-child(1){animation-delay:.025s}
+  #site-header nav ul.menu-open li:nth-child(2){animation-delay:.05s}
+  #site-header nav ul.menu-open li:nth-child(3){animation-delay:.075s}
+  #site-header nav ul.menu-open li:nth-child(4){animation-delay:.1s}
+  #site-header nav ul.menu-open li:nth-child(5){animation-delay:.125s}
+  #site-header nav ul.menu-open li:nth-child(6){animation-delay:.15s}
+  #site-header nav ul.menu-open li:nth-child(7){animation-delay:.175s}
+  .nav-backdrop{display:block;position:fixed;inset:0;z-index:49;width:100%;height:100%;padding:0;border:0;border-radius:0;background:rgba(18,38,44,.09);-webkit-backdrop-filter:blur(5px) saturate(115%);backdrop-filter:blur(5px) saturate(115%);animation:backdrop-arrive .28s ease-out both;cursor:default}
+  .nav-backdrop.closing{animation:backdrop-depart .24s ease-in both;pointer-events:none}
+}
+@keyframes menu-open{from{opacity:0;transform:scaleY(.06);filter:blur(6px)}to{opacity:1;transform:scaleY(1);filter:blur(0)}}
+@keyframes menu-close{from{opacity:1;transform:scaleY(1);filter:blur(0)}to{opacity:0;transform:scaleY(.06);filter:blur(6px)}}
+@keyframes menu-link-arrive{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@keyframes backdrop-arrive{from{opacity:0;backdrop-filter:blur(0)}to{opacity:1;backdrop-filter:blur(5px)}}
+@keyframes backdrop-depart{from{opacity:1;backdrop-filter:blur(5px)}to{opacity:0;backdrop-filter:blur(0)}}
+@media(prefers-reduced-motion:reduce){#site-header nav ul.menu-open,#site-header nav ul.menu-open li,#site-header nav ul.menu-closing,.nav-backdrop{animation:none!important}#site-header nav ul>li:not(:last-child)>a,#site-header nav ul>li:not(:last-child)>a::after,#site-header .burger{transition:none!important}}
+
+/* ---------- Buttons ---------- */
+.btn{
+  background:linear-gradient(180deg,rgba(52,120,105,.92),rgba(23,72,62,.92));
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 18px rgba(23,72,62,.25);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+.btn:hover{background:linear-gradient(180deg,rgba(60,132,116,.96),rgba(23,72,62,.98));border-color:rgba(255,255,255,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 10px 26px rgba(23,72,62,.32)}
+.btn.o{
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.55);color:#fff!important;
+  -webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 6px 20px rgba(0,0,0,.12);
+}
+.btn.o:hover{background:rgba(255,255,255,.88);color:var(--ink)!important}
+/* outline buttons that sit on light glass (inside cards / sections) */
+.card .btn.o,.lead-form .btn.o,.pt .btn.o,.alt .btn.o,.open-house .btn.o,.case-study .btn.o,.offmarket .btn.o{
+  color:var(--ink)!important;background:rgba(255,255,255,.5);border-color:rgba(255,255,255,.85);
+}
+.btn.o.light {color: var(--ink) !important;
+  background: rgba(255,255,255,.5);
+  border-color: rgba(255,255,255,.85);}
+.hero2 .btn.o,.pagehead .btn.o{color:#fff!important}
+.hero2 .btn.o:hover,.pagehead .btn.o:hover{color:var(--ink)!important}
+.cb button:hover{background:rgba(36,91,80,.9)}
+
+/* ---------- Hero / page header ---------- */
+.hero-agent img{border:1px solid rgba(255,255,255,.7);box-shadow:var(--glass-edge),0 24px 60px rgba(7,30,29,.4);padding:8px;background:rgba(255,255,255,.22);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.hero-agent span{
+  background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.75);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  box-shadow:var(--glass-edge),0 8px 24px rgba(7,30,29,.25);
+}
+.search{background:rgba(255,255,255,.5)}
+.badge{background:rgba(24,43,58,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3)}
+.badge.s{background:rgba(194,155,97,.8);border-color:rgba(255,255,255,.5)}
+.representation-label,.favorite{
+  background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);
+  -webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
+}
+.favorite.selected{background:rgba(255,236,230,.8)}
+.vid button{background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);box-shadow:var(--glass-edge),var(--glass-shadow)}
+
+/* ---------- Dark blocks become tinted glass ---------- */
+.stats{
+  background:linear-gradient(135deg,rgba(24,43,58,.72),rgba(36,91,80,.6));
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border-top:1px solid rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.2);
+}
+.cta{
+  background:linear-gradient(135deg,rgba(36,91,80,.78),rgba(23,72,62,.62));
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border-top:1px solid rgba(255,255,255,.4);
+}
+.cta .btn{background:rgba(255,255,255,.85);color:var(--blue)!important;border-color:rgba(255,255,255,.9)}
+.result-card,.home-payment{
+  background:linear-gradient(135deg,rgba(23,72,62,.82),rgba(36,91,80,.64));
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border:1px solid rgba(255,255,255,.3);box-shadow:var(--glass-edge),var(--glass-shadow);
+}
+.result-card .btn{background:rgba(255,255,255,.88)}
+footer{
+  background:linear-gradient(180deg,rgba(23,43,54,.78),rgba(15,30,38,.88));
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border-top:1px solid rgba(255,255,255,.28);
+}
+.fine{border-top-color:rgba(255,255,255,.15)}
+
+/* ---------- Form controls ---------- */
+select,input,textarea{
+  background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:inset 0 1px 3px rgba(24,43,58,.06);
+}
+select:focus,input:focus,textarea:focus{background:rgba(255,255,255,.85);border-color:rgba(36,91,80,.55)}
+.view-toggle button{background:transparent}
+.view-toggle button.active{background:rgba(36,91,80,.9)}
+
+/* ---------- FAQ rows ---------- */
+details{border-bottom:1px solid rgba(24,43,58,.12)}
+
+/* ---------- Photos keep a glassy rim ---------- */
+.guide-image,.service-image,.content-photo,.testimonial-intro img,.property-gallery,.image-banner,.case-study img{
+  border:1px solid rgba(255,255,255,.75);box-shadow:var(--glass-edge),var(--glass-shadow-lg);
+}
+.property-gallery{padding:0}
+
+/* ---------- Fallbacks ---------- */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  :root{--glass-bg:rgba(255,255,255,.92);--glass-bg-strong:#fff}
+  header,.listing-tools,.home-calculator,.search{background:rgba(255,255,255,.95)}
+  .stats{background:#182b3a}.cta{background:#245b50}footer{background:#172b36}
+}
+@media(prefers-reduced-transparency:reduce){
+  :root{--glass-bg:rgba(255,255,255,.95);--glass-bg-strong:#fff}
+  *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .stats{background:#182b3a}.cta{background:#245b50}footer{background:#172b36}
+}
+@media(prefers-reduced-motion:reduce){body::after{animation:none}}
+@media(max-width:760px){
+  /* lighter blur = smoother scrolling on phones */
+  :root{--glass-blur:blur(14px) saturate(160%)}
+  body::after{display:none}
+}
